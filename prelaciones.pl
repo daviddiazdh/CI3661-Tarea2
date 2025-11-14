@@ -24,7 +24,7 @@ prelacion_total(A, B) :-
 % Caso base de prelacion_total_helper, si hay un camino directo, 
 % se devuelve dicho camino sin importar visitados.
 prelacion_total_helper(A, B, _) :-
-    prela(A, B).
+    prela(A, B), !.
 
 % Caso recursivo de prelacion_total_helper, si no hay un camino directo,
 % entonces se verifican los vecinos de A que no han sido visitados y se intenta

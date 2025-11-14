@@ -30,7 +30,9 @@ profesor_de(Prof, Est) :-
 
 % aprobado verifica que un estudiante haya aprobado una materia, por lo cual,
 % el estudiante debe haber cursado la materia (muestra que cursa es histórico) y
-% debe tener nota en el mismo.
+% debe tener nota en el mismo. Se podría llegar a quitar cursa, porque bastaría con
+% tener nota, pero esto podría ayudar a detectar casos de estudiantes no inscritos
+% en la materia, pero que no notificaron bien al profesor y le colocaron nota.
 aprobado(Est, Mat) :-
     cursa(Est, Mat),
     nota(Est, Mat, Nota),
@@ -38,7 +40,8 @@ aprobado(Est, Mat) :-
 
 % aplazado verifica que un estudiante haya aplazado una materia, en este caso,
 % se verifica que el estudiante curse alguna materia, tenga nota en esa materia y
-% su nota sea reprobatoria, o sea, menor a 50.
+% su nota sea reprobatoria, o sea, menor a 50. Mismo caso anterior, se anularía la 
+% nota si el estudiante no cursaba la materia, así que cursa es necesario.
 aplazado(Est) :-
     cursa(Est, Mat),
     nota(Est, Mat, Nota),
